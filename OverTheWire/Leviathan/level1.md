@@ -1,5 +1,5 @@
 We will start by listing the contents of the home directory.
-```bash
+```console
 leviathan1@gibson:~$ ll
 total 36
 drwxr-xr-x  2 root       root        4096 Oct  5  2023 ./
@@ -10,13 +10,13 @@ drwxr-xr-x 83 root       root        4096 Oct  5  2023 ../
 -rw-r--r--  1 root       root         807 Jan  6  2022 .profile
 ```
 We can see an executable named `check`. Time to run it and see what happens.
-```bash
+```console
 leviathan1@gibson:~$ ./check
 password: 
 ```
 It asks for a password. What could the password be?
 I will go with `leviathan1` and see what happens next.
-```bash
+```console
 leviathan1@gibson:~$ ./check
 password: leviathan1
 Wrong password, Good Bye ...
@@ -24,11 +24,11 @@ Wrong password, Good Bye ...
 The password was wrong. 
 So let's just make a copy of this executable on our local machine by converting it first to base64.
 
-```bash
+```console
 leviathan1@gibson:~$ base64 check
 ```
 Then paste the base64 characters on a file with `.base64` suffix and then decode it to binary with the name you want.
-```bash
+```console
 User@Github:~$ nano check.base64
 User@Github:~$ base64 -d check.base64 > check
 ```
@@ -73,20 +73,19 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 }
 ```
 According to the decompiler he program prompts us to enter a three-character password and compares it to the predefined password "sex". If the entered password matches `sex`, the program grants shell access by invoking `/bin/sh`. The core logic involves reading three characters of input, storing them in a string, and checking this string against the predefined password.
-```bash
+```console
 leviathan1@gibson:~$ ./check
 password: sex
 $
 ```
 We got a new shell. Lets run `whoami`.
-```bash
+```console
 $ whoami
 leviathan2
 ```
 We are `leviathan2`. Now we have permissions to read the flag of `leviathan2`. The passwords of `leviathan` are stored in `/etc/leviathan_pass/`.
-```bash
+```console
 $ cat /etc/leviathan_pass/leviathan2
-mEh5P.....
 ```
 We found the password for the next level!
 

