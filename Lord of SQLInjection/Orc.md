@@ -155,5 +155,4 @@ else:
 ```
 
 ## Conclusion
-Conclusion
 By analyzing the challenge and using a blind SQL injection technique, we successfully extracted the password and solved the challenge. This approach demonstrates how to bypass filters and automate the extraction of sensitive data using Python.
