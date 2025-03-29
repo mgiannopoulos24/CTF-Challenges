@@ -43,7 +43,6 @@ The query will match the 'admin' record in the database.
 This triggers the `solve("vampire")` function, completing the challenge.
 
 ## Key Concepts
-
-    - This challenge demonstrates a common security flaw in blacklist filtering.
-    - When implementing string replacement for security, multiple passes or recursive replacements may be necessary to prevent bypass techniques.
-    - This type of attack is sometimes referred to as a "filter bypass" or "filter evasion" technique.
+- This challenge demonstrates a common security flaw in blacklist filtering.
+- When implementing string replacement for security, multiple passes or recursive replacements may be necessary to prevent bypass techniques.
+- This type of attack is sometimes referred to as a "filter bypass" or "filter evasion" technique.
