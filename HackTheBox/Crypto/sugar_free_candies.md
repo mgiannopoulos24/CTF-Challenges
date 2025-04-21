@@ -10,7 +10,7 @@ Challenge Author(s): [0x50r4](https://app.hackthebox.com/users/1308105)
 
 Difficulty: <font color='green'>Very Easy</font>
 
-<br><br>
+<br><br><br><br><br><br>
 
 # Synopsis
 
