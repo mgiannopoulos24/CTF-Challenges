@@ -10,7 +10,7 @@ Challenge Author(s): [r4sti](https://app.hackthebox.com/users/37925)
 
 Difficulty: <font color='green'>Very Easy</font>
 
-<br><br>
+<br><br><br><br><br><br>
 
 # Synopsis
 
