@@ -17,6 +17,7 @@ Difficulty: <font color='green'>Very Easy</font>
 - The user must unzip the provided file, identify a SquashFS filesystem image, mount it, and search within the mounted filesystem for a flag matching the `HTB{...}` pattern.
 
 ## Description
+- We've located the adversary's location and must now secure access to their Optical Network Terminal to disable their internet connection. Fortunately, we've obtained a copy of the device's firmware, which is suspected to contain hardcoded credentials. Can you extract the password from it?
 
 ## Skills Required
 
