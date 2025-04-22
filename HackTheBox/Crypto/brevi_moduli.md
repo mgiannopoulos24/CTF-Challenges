@@ -18,7 +18,7 @@ Difficulty: <font color='green'>Very Easy</font>
 
 ## Description
 
-- This is a crypto challenge where the server sends you a PEM-encoded RSA public key in each round. Your task is to extract the modulus, factor it into its two prime factors, and send them back to the server. After several rounds, you receive the flag.
+- On a cold Halloween night, five adventurers gathered at the entrance of an ancient crypt. The Cryptkeeper appeared from the shadows, his voice a chilling whisper: "Five locks guard the treasure inside. Crack them, and the crypt is yours." One by one, they unlocked the crypt's secrets, but as the final door creaked open, the Cryptkeeper's eerie laughter filled the air. "Beware, for not all who enter leave unchanged."
 
 ## Skills Required
 

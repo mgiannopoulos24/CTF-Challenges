@@ -18,7 +18,7 @@ Difficulty: <font color='green'>Very Easy</font>
 
 ## Description
 
-- The provided Python script takes the flag, divides it into three chunks (`cnd1`, `cnd2`, `cnd3`), and computes four values (`v1`, `v2`, `v3`, `v4`) based on these chunks. The computed values are given in `output.txt`. We need to solve the system of equations to retrieve the original flag.
+- For years, strange signals pulsed through the air on the eve of October 31st. Some said it was the voice of an ancient witch, others believed it was a message from something far darker. A cryptic message, scattered in three parts, was intercepted by a daring group of villagers. Legend spoke of a deal made between the witch and a shadowy figure, but the true intent of their secret could only be revealed by those brave enough to decipher it before midnight, when the veil between worlds would thin.
 
 ## Skills Required
 
@@ -87,10 +87,10 @@ A final summary of all that was said above:
 This recap can be represented by code using `pwn()` function:
 
 ```python
-def pwn():
-    from sympy import symbols, solve
-    from Crypto.Util.number import long_to_bytes
+from sympy import symbols, solve
+from Crypto.Util.number import long_to_bytes
 
+def pwn():
     # Given values from output.txt
     v1 = 4196604293528562019178729176959696479940189487937638820300425092623669070870963842968690664766177268414970591786532318240478088400508536
     v2 = 11553755018372917030893247277947844502733193007054515695939193023629350385471097895533448484666684220755712537476486600303519342608532236
