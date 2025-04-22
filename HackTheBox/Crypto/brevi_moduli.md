@@ -38,18 +38,23 @@ Difficulty: <font color='green'>Very Easy</font>
 
 ## Analyzing the source code
 
-- The provided file is `solve_brevi_moduli.py`.
-- It connects to the challenge server, receives a PEM-encoded RSA public key, extracts the modulus, factorizes it, and submits the two prime factors.
+- The provided file is `server.py`.
+- It simulates the challenge server, generating RSA public keys with small prime factors.
+- The script uses `pycryptodome` for RSA key generation and PEM encoding.
+- It expects the user to input the two prime factors of the modulus.
+- The script checks if the provided inputs are prime and if their product equals the modulus.
 - The script uses `pwntools` for remote interaction, `pycryptodome` for RSA key parsing, and `sage.all.factor` for factorization.
 
 The basic workflow of the script is as follows:
 
-1. Connect to the remote server using pwntools.
-2. For each round, receive the PEM-encoded public key.
-3. Extract the modulus from the key.
-4. Factorize the modulus using SageMath.
-5. Send the two prime factors back to the server.
-6. After all rounds, receive the flag.
+1.  For each round, generate two 110-bit prime numbers (`pumpkin1` and `pumpkin2`).
+2.  Calculate the modulus `n = pumpkin1 * pumpkin2`.
+3.  Construct an RSA public key from `n` and `e = 65537`, then export it in PEM format.
+4.  Print the PEM-encoded public key to the console.
+5.  Prompt the user to enter the two prime factors.
+6.  Verify that the entered values are prime and that their product equals `n`.
+7.  Repeat steps 1-6 for a set number of rounds.
+8.  After all rounds, print the flag.
 
 A little summary of all the interesting things we have found out so far:
 
