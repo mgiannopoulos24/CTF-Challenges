@@ -1,26 +1,15 @@
-<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-
 ![img](https://i.imgur.com/Xw2DVAT.png)
 
-</div>
+<img src='https://i.imgur.com/heKOInX.png' style='zoom: 80%;' align=left /> <font size='10'>brevi moduli</font>
 
-<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+22<sup>nd</sup> April 2025
 
-  <!-- Column 1: Image -->
-  <div style="width: 50%; text-align: center;">
-    <img src='https://i.imgur.com/heKOInX.png' style='zoom: 80%;' />
-  </div>
+Prepared By: [deathwish24](https://app.hackthebox.com/users/2024290)
 
-  <!-- Column 2: Title and Details -->
-  <div style="width: 50%; text-align: center;">
-    <h1 style="font-size: 2.5em;">brevi moduli</h1>
-    <p>22<sup>nd</sup> April 2025</p>
-    <p>Prepared By: <a href="https://app.hackthebox.com/users/2024290">deathwish24</a></p>
-    <p>Challenge Author(s): <a href="https://app.hackthebox.com/users/37925">r4sti</a></p>
-    Difficulty: <p style="color: green; font-weight: bold;">Very Easy</p>
-  </div>
+Challenge Author(s): [r4sti](https://app.hackthebox.com/users/37925)
 
-</div>
+Difficulty: <p style="color:green;">Very Easy</p>
+
 <br><br><br><br><br><br>
 
 # Synopsis
