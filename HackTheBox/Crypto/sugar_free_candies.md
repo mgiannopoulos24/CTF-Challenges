@@ -1,14 +1,27 @@
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+
 ![img](https://i.imgur.com/Xw2DVAT.png)
 
-<img src='https://i.imgur.com/heKOInX.png' style='zoom: 80%;' align=left /> <font size='10'>SugarFreeCandies</font>
+</div>
 
-22<sup>nd</sup> April 2025
 
-Prepared By: [deathwish24](https://app.hackthebox.com/users/2024290)
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
 
-Challenge Author(s): [0x50r4](https://app.hackthebox.com/users/1308105)
+  <!-- Column 1: Image -->
+  <div style="width: 50%; text-align: center;">
+    <img src='https://i.imgur.com/heKOInX.png' style='zoom: 80%;' />
+  </div>
 
-Difficulty: <font color='green'>Very Easy</font>
+  <!-- Column 2: Title and Details -->
+  <div style="width: 50%; text-align: center;">
+    <h1 style="font-size: 2.5em;">sugarfreecandies</h1>
+    <p>22<sup>nd</sup> April 2025</p>
+    <p>Prepared By: <a href="https://app.hackthebox.com/users/2024290">deathwish24</a></p>
+    <p>Challenge Author(s): <a href="https://app.hackthebox.com/users/1308105">0x50r4</a></p>
+    Difficulty: <p style="color: green; font-weight: bold;">Very Easy</p>
+  </div>
+
+</div>
 
 <br><br><br><br><br><br>
 
