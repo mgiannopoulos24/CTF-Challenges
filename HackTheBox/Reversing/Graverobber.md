@@ -8,7 +8,7 @@ Prepared By: [deathwish24](https://app.hackthebox.com/users/2024290)
 
 Challenge Author(s): [clubby789](https://app.hackthebox.com/users/83743)
 
-Difficulty: <font color='green'>Very Easy</font> 
+Difficulty: <font color='lightgreen'>Very Easy</font> 
 
 <br><br><br><br><br><br>
 
