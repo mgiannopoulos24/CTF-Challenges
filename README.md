@@ -6,6 +6,4 @@ A collection of CTF writeups from multiple contributors. From binary exploitatio
 
 People that contributed so far:
 
-<a href="https://github.com/mgiannopoulos24/CTF-Challenges/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=mgiannopoulos24/CTF-Challenges" />
-</a>
+[![Contributors](https://contrib.rocks/image?repo=mgiannopoulos24/CTF-Challenges)](https://github.com/mgiannopoulos24/CTF-Challenges/graphs/contributors)
